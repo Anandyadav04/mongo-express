@@ -5,6 +5,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Chat } from "./models/chat.js"
 import methodOverride from "method-override"
+import { AsyncLocalStorage } from "async_hooks";
 
 const app = express();
 dotenv.config();
@@ -79,6 +80,14 @@ app.patch("/chats/:id", (req, res) => {
     console.log(chat);
     
     res.redirect("/chats")
+});
+
+//dstroy route
+app.delete("/chats/:id", async (req, res) => {
+    let {id} = req.params;
+    let delChat = await Chat.findByIdAndDelete(id);
+    res.redirect("/chats")
+    
 })
 
 app.listen(port, (req, res) => {

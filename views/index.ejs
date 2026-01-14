@@ -29,7 +29,12 @@
     <% for (let chat of chats) { %>
         <div class="chat">
             <h2>From: <%= chat.from  %></h2>
-            <h2 id="msg">Message: <%= chat.msg %> <br><a href="/chats/<%= chat._id %>/edit">Edit</a></h2>
+            <h2 id="msg">Message: <%= chat.msg %> <br><a href="/chats/<%= chat._id %>/edit">Edit</a> 
+                <form method="post" action="/chats/<%= chat._id %>?_method=DELETE"
+                    onsubmit="return confirm('Message will be permanently deleted!')">
+                    <button type="submit">Delete</button>
+                </form>
+            </h2>
             <h2>Received by: <%= chat.to %> </h2>
             <h2>Created at: <%= chat.created_at.toString().split(" ")[4] %></h2>
             <h2><%= chat.created_at.toString().split(" ").slice(0, 4).join("-") %></h2>
