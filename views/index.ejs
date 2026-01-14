@@ -11,10 +11,15 @@
         .chat {
             border: 2px solid black;
             border-radius: 10px;
-            margin: 5px;
+            margin: 10px;
             padding: 10px 20px;
-            background-color: antiquewhite;
+            background-color: rgb(242, 231, 217);
             display: inline-block;
+        }
+        #msg {
+            background-color: rgb(173, 233, 213);
+            padding: 10px;
+            border-radius: 7px;
         }
     </style>
 </head>
@@ -24,8 +29,10 @@
     <% for (let chat of chats) { %>
         <div class="chat">
             <h2>From: <%= chat.from  %></h2>
-            <h2>Message: <%= chat.msg %></h2>
-            <h2>Received by: <%= chat.to %></h2>
+            <h2 id="msg">Message: <%= chat.msg %> <br><a href="/chats/<%= chat._id %>/edit">Edit</a></h2>
+            <h2>Received by: <%= chat.to %> </h2>
+            <h2>Created at: <%= chat.created_at.toString().split(" ")[4] %></h2>
+            <h2><%= chat.created_at.toString().split(" ").slice(0, 4).join("-") %></h2>
         </div>
     <% } %>
 </body>
