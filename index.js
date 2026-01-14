@@ -69,10 +69,10 @@ app.get("/chats/:id/edit", async (req, res) => {
 });
 
 // PATCH THE form
-app.patch("/chats/:id", (req, res) => {
+app.patch("/chats/:id", async (req, res) => {
     let {id} = req.params;
     let {msg: newmsg} = req.body;
-    let chat = Chat.findByIdAndUpdate(
+    let chat = await Chat.findByIdAndUpdate(
         id, 
         {msg: newmsg},
         {runValidators: true}

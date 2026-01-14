@@ -12,7 +12,7 @@
     <form method="post" action="/chats/<%= chat._id %>?_method=PATCH">
         <label for="msg">Message: </label>
         <textarea name="msg" rows="5" cols="30"><%= chat.msg %> </textarea> <br><br>
-        <button>Update Message</button>
+        <button type="submit">Update Message</button>
     </form>
 </body>
 </html>
